@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DisplaY Message</title>
+</head>
+<body>
+<div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Meassage Details</h3>
+              </div>
+              <!-- ./card-header -->
+              <div class="card-body">
+                <table class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                        <th>Name</th>
+                      <th>Email</th>
+                      <th>Subject</th>
+                      <th>Message</th>
+
+
+                    </tr>
+                  </thead>
+                     {% for i in data %}
+                    <tr>
+                        <td>{{i.name}}</td>
+                       <td>{{i.email}}</td>
+                        <td>{{i.subject}}</td>
+                        <td>{{i.message}}</td>
+
+                        <td>
+                            <form action="{% url 'deletebook' dataid=i.id %}">
+                                <button type="submit" class="btn btn-primary">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Admin Details</h3>
+              </div>
+              <!-- ./card-header -->
+              <div class="card-body">
+                <table class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Mobile Number</th>
+                        <th>Password</th>
+                      <th>Image</th>
+
+
+                    </tr>
+                  </thead>
+                    {% for i in data %}
+                    <tr>
+                        <td>{{i.name}}</td>
+                        <td>{{i.email}}</td>
+                        <td>{{i.mobile}}</td>
+                        <td>{{i.password}}</td>
+                        <td>
+                            <img src="{{ i.image.url }}" width="50px" height="50px">
+                        </td>
+                        <td>
+                        <form action="{% url 'editadmin' dataid=i.id %}">
+                            {% csrf_token %}
+                              <button type="submit" class="btn btn-primary">Edit</button>
+                        </form>
+                        </td>
+                        <td>
+                            <form action="{% url 'deleteadmin' dataid=i.id %}">
+                                 <button type="submit" class="btn btn-primary">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+</body>
+</html>
+{% endblock %}

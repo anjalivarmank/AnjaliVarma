@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DisplaY book</title>
+</head>
+<body>
+<div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Book Details</h3>
+              </div>
+              <!-- ./card-header -->
+              <div class="card-body">
+                <table class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                        <th>Name Of Book</th>
+                      <th>Price</th>
+                      <th>Published_Date</th>
+                      <th>Author_name</th>
+                        <th>Category</th>
+                      <th>Image</th>
+
+                    </tr>
+                  </thead>
+                     {% for i in data %}
+                    <tr>
+                        <td>{{i.Name}}</td>
+                       <td>{{i.Price}}</td>
+                        <td>{{i.Published_Date}}</td>
+                        <td>{{i.author_name}}</td>
+                        <td>{{i.Categry}}</td>
+                        <td><img src="{{i.Image.url}}" height="30px" width="30px"></td>
+                         <td>
+                        <form action="{% url 'editbook' dataid=i.id %}">
+                            {% csrf_token %}
+                              <button type="submit" class="btn btn-primary">Edit</button>
+                        </form>
+                        </td>
+                        <td>
+                            <form action="{% url 'deletebook' dataid=i.id %}">
+                                <button type="submit" class="btn btn-primary">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+
+</body>
+</html>
+{% endblock %}

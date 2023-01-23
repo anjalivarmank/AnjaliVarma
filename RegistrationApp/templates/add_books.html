@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Book Details</title>
+</head>
+<body>
+<div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Add Book Details</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form method="post" action="{% url 'add_booksave' %}" enctype="multipart/form-data">
+                  {% csrf_token%}
+                 <div class="card-body">
+                  <div class="form-group">
+                         <label >Select category</label>
+                          <div class="col-sm-9">
+                              <select name="category" class="form-control">
+                                  <option>Please Select</option>
+                                  {% for d in data %}
+                                    <option> {{ d.Name }} </option>
+                                  {% endfor %}
+                              </select>
+                          </div>
+                       </div>
+                     <div class="form-group">
+                    <label for="exampleInputEmail1">Name of Book</label>
+                    <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="Enter name" >
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Date of publish</label>
+                    <input type="text" name="publish_date" class="form-control" id="exampleInputEmail1" placeholder="Enter date" >
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Author Name</label>
+                    <input type="text" name="author_name" class="form-control" id="exampleInputPassword1" placeholder="enter author name">
+                  </div>
+                     <div class="form-group">
+                    <label for="exampleInputPassword1">Price</label>
+                    <input type="text" name="price" class="form-control" id="exampleInputPassword1" placeholder="enter price">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputFile">File input</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" name="image" class="custom-file-input" id="exampleInputFile" >
+                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                      </div>
+                      <div class="input-group-append">
+                        <span class="input-group-text">Upload</span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+
+
+</body>
+</html>
+{% endblock %}
